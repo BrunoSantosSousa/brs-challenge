@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type Schedule {
+  publication String
+  deadline String
+}
+
+model NoticeFinep {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  idFinep Int @unique
+  title String
+  description String
+  uri String
+  schedule Schedule
+}
